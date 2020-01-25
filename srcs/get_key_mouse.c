@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:31:51 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 15:58:28 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:20:56 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int			get_key_event(int key, t_env *env)
 		change_processor(env, key);
 	else if (key == 4)
 		deal_with_hidden_menu(env);
+	else if (key == 123 || key == 124)
+		modify_paint_id(env, key);
+	else if (key == 125 || key == 126)
+		modify_number_of_colours(env, key);
+	else if (key == 12 || key == 13 || key == 14)
+		modify_uni_color(env, key);
+	else if (key == 15)
+		random_color(env);
 	return (0);
 }
 

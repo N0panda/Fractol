@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:46:33 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 17:44:15 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/25 17:44:39 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void		put_menu(t_env *env)
 	menu_fractal_name(env);
 	menu_max_iter(env);
 	menu_zoom(env);
+	if (env->color_set == 0)
+		menu_uni_color(env);
 	if (env->mouse == 2)
 		menu_captured(env);
 	menu_processor(env);

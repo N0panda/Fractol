@@ -6,7 +6,7 @@
 #    By: ythomas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 16:40:09 by ythomas           #+#    #+#              #
-#    Updated: 2019/12/04 15:59:10 by ythomas          ###   ########.fr        #
+#    Updated: 2020/01/25 17:36:59 by ythomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fractol
 
 CC = gcc 
 
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 FLAGS =
 FLAGS_LIBX = -lmlx -framework OpenGL -framework AppKit
 
@@ -30,10 +30,12 @@ SRCS = main \
 	   fractal_feigenbaum \
 	   fractal_leaf \
 	   events \
+	   events2 \
 	   mouse_event \
 	   tools \
 	   color \
 	   menu	\
+	   menu2 \
 	   thread \
 
 SRC_PATH = ./srcs/

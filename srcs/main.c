@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:38:14 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 18:04:06 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/25 17:58:23 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,60 @@ static const	t_fractals frac[] =
 	{"Leaf", 0}
 };
 
+void		setup_color(int **paint)
+{
+	paint[0][0] = BLACK;
+	paint[0][1] = PURPLE;
+	paint[0][2] = DARK_PURPLE;
+	paint[0][3] = LIGHT_PINK;
+	paint[0][4] = BLUE;
+	paint[0][5] = PINK_LADY;
+
+	paint[1][0] = 0xFD085A;
+	paint[1][1] = 0x9E9D3C;
+	paint[1][2] = 0xF3FD1A;
+	paint[1][3] = 0xFF0000;
+	paint[1][4] = 0x27C4F7;
+	paint[1][5] = BLACK;
+
+	paint[2][0] = 0x17ffca;
+	paint[2][1] = 0x4b8aec;
+	paint[2][2] = 0x701a1a;
+	paint[2][3] = 0xce6ae1;
+	paint[2][4] = 0xd7a671;
+	paint[2][5] = 0xfff800;
+}
+
+int			**init_paint_tab(void)
+{
+	int		**paint;
+	int		i;
+
+	if (!(paint = ft_memalloc(sizeof(void *) * NB_PALETTE)))
+		return (NULL);
+	i = -1;
+	while (++i < NB_PALETTE)
+		if (!(paint[i] = ft_memalloc(sizeof(int *) * 6)))
+			return (NULL);
+	setup_color(paint);
+	return (paint);
+}
+
 int			get_the_right_setup(t_env *env)
 {
-	int i;
-
 	env->mouse = frac[env->fractal].mouse;
 	env->name = ft_strdup(frac[env->fractal].name);
 	env->processor = CPU;
 	env->hidden_menu = VISIBLE;
-	env->color_set = 0;
-	env->color = BLUE;
-	env->red = ((unsigned char *)&env->color)[0];
-	env->green = ((unsigned char *)&env->color)[1];
-	env->blue = ((unsigned char *)&env->color)[2];
+	env->color_set = 1;
+	env->id_paint = 0;
+	env->smooth = 0;
+	env->uni_color = WHITE;
+	if (((env->paint = init_paint_tab()) == NULL))
+		return (-1);
+	env->red = ((unsigned char *)&env->uni_color)[0];
+	env->green = ((unsigned char *)&env->uni_color)[1];
+	env->blue = ((unsigned char *)&env->uni_color)[2];
 	if (!(env->start_thr = malloc(sizeof(int) * NB_THREAD)))
 		return (-1);
 	return (0);

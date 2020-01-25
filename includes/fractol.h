@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:34:42 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 17:34:06 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:46:33 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ struct				s_env
 	int				mouse;
 	int				freeze;
 	int				color_set;
+	int				id_paint;
+	int				smooth;
 
-	int				color;
+	int				**paint;
+	int				uni_color;
 	unsigned char	blue;
 	unsigned char	green;
 	unsigned char	red;
@@ -105,12 +108,17 @@ void				freeze_defreeze(t_env *env, int stat);
 void				change_fractal(t_env *env, int key);
 void				change_processor(t_env *env, int key);
 void				deal_with_hidden_menu(t_env *env);
+void				modify_paint_id(t_env *env, int key);
+void				modify_number_of_colours(t_env *env, int key);
+void				modify_uni_color(t_env *env, int key);
+void				random_color(t_env *env);
 
 int					menu_max_iter(t_env *env);
 int					menu_zoom(t_env *env);
 int					menu_fractal_name(t_env *env);
 int					menu_captured(t_env *env);
 int					menu_processor(t_env *env);
+int					menu_uni_color(t_env *env);
 
 int					ft_creat_image(t_mlx *mlx);
 void				push_image(t_env *env);
@@ -131,6 +139,10 @@ void				init_feigenbaum(t_env *env);
 
 void				color_functions(t_env *env, double x, double y, int i);
 unsigned int		color_degrade(t_env *env, double x, double y, int i);
+unsigned int		color_degrade_two(t_env *env, int i, int x, int y);
+unsigned int		set_of_two(t_env *env, double x, double y, int i);
+unsigned int		set_of_four(t_env *env, double x, double y, int i);
+unsigned int		set_of_six(t_env *env, double x, double y, int i);
 
 double				ft_abs(double nb);
 #endif
