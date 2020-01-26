@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 14:22:16 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 18:21:01 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:25:55 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,25 @@ void		modify_paint_id(t_env *env, int key)
 	fill_buff_image(env);
 }
 
+void		negative_and_smooth(t_env *env, int key)
+{
+	if (key == 45)
+	{
+		if (env->negative == 0)
+			env->negative = 1;
+		else
+			env->negative = 0;
+	}
+	else
+	{
+		if (env->smooth == 0)
+			env->smooth = 1;
+		else
+			env->smooth = 0;
+	}
+	fill_buff_image(env);
+}
+
 void		random_color(t_env *env)
 {
 	int i;
@@ -39,7 +58,7 @@ void		random_color(t_env *env)
 	env->red = rand() % 0xFF;
 	env->green = rand() % 0xFF;
 	env->blue = rand() % 0xFF;
-	env->id_paint = NB_PALETTE- 1;
+	env->id_paint = NB_PALETTE - 1;
 	fill_buff_image(env);
 }
 
@@ -62,7 +81,7 @@ void		modify_uni_color(t_env *env, int key)
 	}
 	else if (key == 13)
 	{
-		env->green -= 2;;
+		env->green -= 2;
 		if (env->green < 0)
 			env->green = 255;
 	}

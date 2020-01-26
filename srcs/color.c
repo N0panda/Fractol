@@ -6,37 +6,37 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:58:47 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 18:46:29 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:59:22 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static t_color		color_function[] = {
+static t_color		g_color_function[] = {
 	color_degrade,
 	set_of_two,
 	set_of_four,
 	set_of_six
 };
 
-unsigned int		set_of_two(t_env *env, double x, double y, int i)
-{
-	unsigned int		color;
-
-	if (i == env->max_iter)
-		color = env->paint[env->id_paint][0];
-	else
-		color = env->paint[env->id_paint][1];
-	return (color);
-}
-
-unsigned int		set_of_four(t_env *env, double x, double y, int i)
+unsigned int		set_of_two(t_env *env, int i)
 {
 	unsigned int		color;
 
 	if (i == env->max_iter)
 		color = color_degrade_two(env, i, env->id_paint, 0);
-	else if (i  > 0.8 * env->max_iter)
+	else
+		color = color_degrade_two(env, i, env->id_paint, 1);
+	return (color);
+}
+
+unsigned int		set_of_four(t_env *env, int i)
+{
+	unsigned int		color;
+
+	if (i == env->max_iter)
+		color = color_degrade_two(env, i, env->id_paint, 0);
+	else if (i > 0.8 * env->max_iter)
 		color = color_degrade_two(env, i, env->id_paint, 1);
 	else if (i > 0.5 * env->max_iter)
 		color = color_degrade_two(env, i, env->id_paint, 2);
@@ -45,7 +45,7 @@ unsigned int		set_of_four(t_env *env, double x, double y, int i)
 	return (color);
 }
 
-unsigned int		set_of_six(t_env *env, double x, double y, int i)
+unsigned int		set_of_six(t_env *env, int i)
 {
 	unsigned int		color;
 
@@ -74,23 +74,24 @@ unsigned int		set_of_six(t_env *env, double x, double y, int i)
 	return (color);
 }
 
-unsigned int		color_degrade(t_env *env, double x, double y, int i)
+unsigned int		color_degrade(t_env *env, int i)
 {
 	unsigned int color;
 
 	if (env->max_iter == 0)
 		return (BLACK);
-	((unsigned char *)&color)[0]= i * env->red / env->max_iter;
+	((unsigned char *)&color)[0] = i * env->red / env->max_iter;
 	((unsigned char *)&color)[1] = i * env->green / env->max_iter;
 	((unsigned char*)&color)[2] = i * env->blue / env->max_iter;
-
 	return (color);
 }
 
-void		color_functions(t_env *env, double x, double y, int i)
+void				color_functions(t_env *env, double x, double y, int i)
 {
 	unsigned int		color;
 
-	color = color_function[env->color_set](env, x, y, i);
+	color = g_color_function[env->color_set](env, i);
+	if (env->negative == 1)
+		color = color_negative(color);
 	set_pixel(env, x, y, color);
 }

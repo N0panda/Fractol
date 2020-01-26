@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 12:59:15 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 18:20:58 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 16:35:26 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define YELLOW			0xFFFF33
 # define BLUE			0x0000FF
 # define GREEN			0x00FF00
+# define DEEP_GREEN		0x25CD10
 # define RED			0xFF0000
 
 #endif

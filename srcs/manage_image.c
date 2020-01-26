@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:46:33 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 17:44:39 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:43:44 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		put_menu(t_env *env)
 	menu_fractal_name(env);
 	menu_max_iter(env);
 	menu_zoom(env);
+	menu_negative_smooth(env);
 	if (env->color_set == 0)
 		menu_uni_color(env);
 	if (env->mouse == 2)
@@ -69,8 +70,13 @@ void		set_pixel(t_env *env, int x, int y, unsigned int color)
 
 int			fill_buff_image(t_env *env)
 {
+	if (env->help == 1)
+	{
+		display_help(env);
+		return (0);
+	}
 	if (env->processor == CPU)
-		fill_buff_image_CPU(env);
+		fill_buff_image_cpu(env);
 	else
 		return (0);
 	return (0);

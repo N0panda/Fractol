@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 16:41:18 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 17:44:19 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:27:34 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void			f_leaf(t_env *env, double x, double y)
 	double	tmp;
 	int		i;
 	double	tab[4];
+
 	i = 0;
 	tab[0] = x / env->zoom + env->x_min;
 	tab[1] = y / env->zoom + env->y_min;

@@ -6,19 +6,11 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:11:14 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 13:08:04 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:46:24 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-static const t_func g_func[] =
-{
-	f_mandelbrot,
-	f_julia,
-	f_burningship,
-	f_feigenbaum,
-	f_leaf
-};
 
 static const init_func g_init[] =
 {
@@ -34,7 +26,8 @@ int				init_mlx(t_env *env)
 	if (!(env->mlx = ft_memalloc(sizeof(t_mlx))))
 		return (-1);
 	env->mlx->ptr = mlx_init();
-	env->mlx->window = mlx_new_window(env->mlx->ptr, W_SCREEN, H_SCREEN, env->name);
+	env->mlx->window = mlx_new_window(env->mlx->ptr, W_SCREEN,
+		H_SCREEN, env->name);
 	g_init[env->fractal](env);
 	return (0);
 }

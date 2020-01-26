@@ -6,18 +6,18 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:53:05 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 15:01:41 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:29:34 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 static const char		*g_fractal_names[] = {
-		"Mandelbrot",
-		"Julia",
-		"Burningship",
-		"Feigenbaum",
-		"Leaf"
+	"Mandelbrot",
+	"Julia",
+	"Burningship",
+	"Feigenbaum",
+	"Leaf"
 };
 
 int			get_params(t_env *env, int ac, char **av)

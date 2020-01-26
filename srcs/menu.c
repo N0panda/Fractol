@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:37:23 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/03 17:24:40 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:21:14 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int			menu_fractal_name(t_env *env)
 		return (0);
 	mlx_string_put(env->mlx->ptr, env->mlx->window, 1200, 20,
 		DEEP_RED, tmp);
+	mlx_string_put(env->mlx->ptr, env->mlx->window, 1200, 460,
+		WHITE, "Press [P] for Help Menu");
 	free(tmp);
 	return (0);
 }
@@ -66,10 +68,10 @@ int			menu_captured(t_env *env)
 int			menu_processor(t_env *env)
 {
 	if (env->processor == CPU)
-		mlx_string_put(env->mlx->ptr, env->mlx->window, 1150, 500,
+		mlx_string_put(env->mlx->ptr, env->mlx->window, 1150, 520,
 			DARK_PURPLE, "You are processing on : [.CPU.]");
 	else
-		mlx_string_put(env->mlx->ptr, env->mlx->window, 1150, 500,
+		mlx_string_put(env->mlx->ptr, env->mlx->window, 1150, 520,
 			DARK_PURPLE, "You are processing on : [.GPU.]");
 	return (0);
 }

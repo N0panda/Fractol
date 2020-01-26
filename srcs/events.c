@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:09:44 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 17:49:09 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:59:20 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static const init_func g_init[] =
 	init_leaf
 };
 
-static const char		*frac_name[] =
+static const char		*g_frac_name[] =
 {
 	"Mandelbrot",
 	"Julia",
@@ -34,7 +34,7 @@ void		reset_fractal(t_env *env)
 {
 	g_init[env->fractal](env);
 	free(env->name);
-	env->name = ft_strdup(frac_name[env->fractal]);
+	env->name = ft_strdup(g_frac_name[env->fractal]);
 	fill_buff_image(env);
 }
 
@@ -53,7 +53,7 @@ void		change_fractal(t_env *env, int key)
 	reset_fractal(env);
 }
 
-void		modify_max_iter(t_env * env, int stat)
+void		modify_max_iter(t_env *env, int stat)
 {
 	if (stat == 1)
 	{
@@ -67,12 +67,22 @@ void		modify_max_iter(t_env * env, int stat)
 	}
 }
 
-void		deal_with_hidden_menu(t_env *env)
+void		deal_with_hidden_menu(t_env *env, int key)
 {
-	if (env->hidden_menu == VISIBLE)
-		env->hidden_menu = HIDDEN;
+	if (key == 35)
+	{
+		if (env->help == 0)
+			env->help = 1;
+		else
+			env->help = 0;
+	}
 	else
-		env->hidden_menu = VISIBLE;
+	{
+		if (env->hidden_menu == VISIBLE)
+			env->hidden_menu = HIDDEN;
+		else
+			env->hidden_menu = VISIBLE;
+	}
 	fill_buff_image(env);
 }
 
@@ -83,9 +93,9 @@ void		change_processor(t_env *env, int key)
 		env->processor = CPU;
 		fill_buff_image(env);
 	}
-	else if (key == 5 &&env->processor != GPU)
+	else if (key == 5 && env->processor != GPU)
 	{
-		env->processor = GPU;
+		env->processor = CPU;
 		fill_buff_image(env);
 	}
 }

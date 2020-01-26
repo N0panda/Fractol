@@ -6,7 +6,7 @@
 #    By: ythomas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 16:40:09 by ythomas           #+#    #+#              #
-#    Updated: 2020/01/25 17:36:59 by ythomas          ###   ########.fr        #
+#    Updated: 2020/01/26 17:55:46 by ythomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = fractol
 CC = gcc 
 
 FLAGS = -Wall -Wextra -Werror
-FLAGS =
 FLAGS_LIBX = -lmlx -framework OpenGL -framework AppKit
 
 SRCS = main \
@@ -36,6 +35,7 @@ SRCS = main \
 	   color \
 	   menu	\
 	   menu2 \
+	   help_menu \
 	   thread \
 
 SRC_PATH = ./srcs/
@@ -66,6 +66,7 @@ $(OBJ_DIR)%.o: $(SRC_PATH)%.c $(HEAD_PATH)
 
 clean:
 	rm -rf $(OBJ_DIR)
+	make -C $(LIB_DIR) clean
 
 fclean: clean
 	rm -rf $(NAME)

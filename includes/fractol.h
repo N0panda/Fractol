@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:34:42 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 18:46:33 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:59:24 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 typedef struct s_env	t_env;
 typedef	void (*t_func)(t_env*, double, double);
 typedef void (*init_func)(t_env*);
-typedef unsigned int (*t_color)(t_env*, double, double, int);
+typedef unsigned int (*t_color)(t_env*, int);
 
 typedef struct		s_mlx
 {
@@ -66,6 +66,7 @@ struct				s_env
 	int				color_set;
 	int				id_paint;
 	int				smooth;
+	int				negative;
 
 	int				**paint;
 	int				uni_color;
@@ -82,6 +83,7 @@ struct				s_env
 	int				max_iter;
 	int				*start_thr;
 	int				hidden_menu;
+	int				help;
 
 	t_mlx			*mlx;
 };
@@ -107,11 +109,12 @@ void				zoom(double x, double y, t_env *env, int stat);
 void				freeze_defreeze(t_env *env, int stat);
 void				change_fractal(t_env *env, int key);
 void				change_processor(t_env *env, int key);
-void				deal_with_hidden_menu(t_env *env);
+void				deal_with_hidden_menu(t_env *env, int key);
 void				modify_paint_id(t_env *env, int key);
 void				modify_number_of_colours(t_env *env, int key);
 void				modify_uni_color(t_env *env, int key);
 void				random_color(t_env *env);
+void				negative_and_smooth(t_env *env, int key);
 
 int					menu_max_iter(t_env *env);
 int					menu_zoom(t_env *env);
@@ -119,11 +122,13 @@ int					menu_fractal_name(t_env *env);
 int					menu_captured(t_env *env);
 int					menu_processor(t_env *env);
 int					menu_uni_color(t_env *env);
+int					menu_negative_smooth(t_env *env);
+int					display_help(t_env *env);
 
 int					ft_creat_image(t_mlx *mlx);
 void				push_image(t_env *env);
 void				set_pixel(t_env *env, int x, int y, unsigned int color);
-int					fill_buff_image_CPU(t_env *env);
+int					fill_buff_image_cpu(t_env *env);
 int					fill_buff_image(t_env *env);
 
 void				f_mandelbrot(t_env *env, double x, double y);
@@ -137,12 +142,13 @@ void				init_burningship(t_env *env);
 void				init_leaf(t_env *env);
 void				init_feigenbaum(t_env *env);
 
+unsigned int		color_negative(unsigned int color);
 void				color_functions(t_env *env, double x, double y, int i);
-unsigned int		color_degrade(t_env *env, double x, double y, int i);
+unsigned int		color_degrade(t_env *env, int i);
 unsigned int		color_degrade_two(t_env *env, int i, int x, int y);
-unsigned int		set_of_two(t_env *env, double x, double y, int i);
-unsigned int		set_of_four(t_env *env, double x, double y, int i);
-unsigned int		set_of_six(t_env *env, double x, double y, int i);
+unsigned int		set_of_two(t_env *env, int i);
+unsigned int		set_of_four(t_env *env, int i);
+unsigned int		set_of_six(t_env *env, int i);
 
 double				ft_abs(double nb);
 #endif

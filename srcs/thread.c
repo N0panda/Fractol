@@ -6,13 +6,13 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 14:25:00 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 17:57:31 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:39:38 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static const t_func 	g_func[] =
+static const t_func		g_func[] =
 {
 	f_mandelbrot,
 	f_julia,
@@ -21,7 +21,7 @@ static const t_func 	g_func[] =
 	f_leaf
 };
 
-int				fill_buffer_image_t(t_env *env, double pos)
+int						fill_buffer_image_t(t_env *env, double pos)
 {
 	double x;
 	double y;
@@ -44,7 +44,7 @@ int				fill_buffer_image_t(t_env *env, double pos)
 	return (0);
 }
 
-void				get_position(t_env *env)
+void					get_position(t_env *env)
 {
 	int i;
 
@@ -60,7 +60,7 @@ void				get_position(t_env *env)
 	}
 }
 
-void				setup_start_thr(t_env *env)
+void					setup_start_thr(t_env *env)
 {
 	int i;
 
@@ -69,7 +69,7 @@ void				setup_start_thr(t_env *env)
 		env->start_thr[i] = -1;
 }
 
-int					fill_buff_image_CPU(t_env *env)
+int						fill_buff_image_cpu(t_env *env)
 {
 	int				i;
 	pthread_t		thread[NB_THREAD];

@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:58:36 by ythomas           #+#    #+#             */
-/*   Updated: 2019/12/04 17:15:08 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:35:59 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void			f_feigenbaum(t_env *env, double x, double y)
 		&& i < env->max_iter)
 	{
 		tmp = tab[2];
-		tab[2] = tab[2] * tab[2] - tab[3] * tab[3] + (tab[0] * ((tab[0] * tab[0]) - 3 * (tab[1] * tab[1]))) - teta; 
-		tab[3] = 2.0 * tab[3] * tmp + (tab[1] * ((3 * tab[0] * tab[0]) - (tab[1] * tab[1])));
+		tab[2] = tab[2] * tab[2] - tab[3] * tab[3] + (tab[0] *
+			((tab[0] * tab[0]) - 3 * (tab[1] * tab[1]))) - teta;
+		tab[3] = 2.0 * tab[3] * tmp +
+			(tab[1] * ((3 * tab[0] * tab[0]) - (tab[1] * tab[1])));
 		i++;
 	}
 	color_functions(env, x, y, i);

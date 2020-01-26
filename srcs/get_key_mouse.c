@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:31:51 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/25 18:20:56 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/26 17:35:19 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int			get_key_event(int key, t_env *env)
 {
 	if (key == 53)
 		exit(EXIT_SUCCESS);
-	else if (key == 78) // -
+	else if (key == 78)
 		modify_max_iter(env, 0);
-	else if (key == 69) // +
+	else if (key == 69)
 		modify_max_iter(env, 1);
 	else if (key == 49)
 		reset_fractal(env);
@@ -40,8 +40,8 @@ int			get_key_event(int key, t_env *env)
 		change_fractal(env, key);
 	else if (key == 8 || key == 5)
 		change_processor(env, key);
-	else if (key == 4)
-		deal_with_hidden_menu(env);
+	else if (key == 4 || key == 35)
+		deal_with_hidden_menu(env, key);
 	else if (key == 123 || key == 124)
 		modify_paint_id(env, key);
 	else if (key == 125 || key == 126)
@@ -50,6 +50,8 @@ int			get_key_event(int key, t_env *env)
 		modify_uni_color(env, key);
 	else if (key == 15)
 		random_color(env);
+	else if (key == 45 || key == 46)
+		negative_and_smooth(env, key);
 	return (0);
 }
 
