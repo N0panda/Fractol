@@ -6,11 +6,12 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 16:41:18 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:27:34 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:26:16 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include "math.h"
 
 void			f_leaf(t_env *env, double x, double y)
 {
@@ -23,12 +24,18 @@ void			f_leaf(t_env *env, double x, double y)
 	tab[1] = y / env->zoom + env->y_min;
 	tab[2] = 0.0;
 	tab[3] = 0.0;
-	while (tab[2] * tab[2] + tab[3] * tab[3] < 4.0
+	while (tab[2] * tab[2] + tab[3] * tab[3] < 100.0
 		&& i < env->max_iter)
 	{
 		tmp = tab[2];
-		tab[2] = tab[2] * tab[2] - tab[3] * tab[3] + tab[0];
-		tab[3] = 2.0 * tab[3] * tmp + tab[1];
+		tab[2] = cos((tab[2] * tab[0] + tab[3] * tab[1])
+			/ (tab[0] * tab[0] + tab[1] * tab[1]))
+			* cosh((tab[2] * tab[1] - tab[0] * tab[3])
+			/ (tab[0] * tab[0] + tab[1] * tab[1]));
+		tab[3] = sin((tmp * tab[0] + tab[3] * tab[1])
+			/ (tab[0] * tab[0] + tab[1] * tab[1]))
+			* sinh((tmp * tab[1] - tab[0] * tab[3])
+			/ (tab[0] * tab[0] + tab[1] * tab[1]));
 		i++;
 	}
 	color_functions(env, x, y, i);

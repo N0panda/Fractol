@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:34:42 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:59:24 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:44:47 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define W_IMAGE		1080.0
 # define H_MENU			720
 # define W_MENU			400
-# define PIX_IMAGE		W_IMAGE * H_IMAGE
 
 # define GPU			1
 # define CPU			0
@@ -39,9 +38,9 @@
 # define HIDDEN			1
 
 typedef struct s_env	t_env;
-typedef	void (*t_func)(t_env*, double, double);
-typedef void (*init_func)(t_env*);
-typedef unsigned int (*t_color)(t_env*, int);
+typedef	void			(*t_func)(t_env*, double, double);
+typedef void			(*t_init_func)(t_env*);
+typedef unsigned int	(*t_color)(t_env*, int);
 
 typedef struct		s_mlx
 {
@@ -96,11 +95,12 @@ typedef struct		s_fractals
 
 void				thread_test(t_env *env);
 
-int					get_params(t_env *env, int ac, char **av);
-int					ft_error(int err, char *type_error);
-int					run_fractal(t_env *env);
+void				get_params(t_env *env, int ac, char **av);
+void				ft_error(int err, char *type_error);
+void				menu_err(void);
+void				run_fractal(t_env *env);
 int					get_key_event(int key, t_env *env);
-int					get_mouse_event(int key, int x, int y,t_env *env);
+int					get_mouse_event(int key, int x, int y, t_env *env);
 int					julia_position_mouse(int x, int y, t_env *env);
 
 void				modify_max_iter(t_env *env, int stat);

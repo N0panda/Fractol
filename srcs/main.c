@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 13:38:14 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:52:17 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:08:42 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				**init_paint_tab(void)
 	return (paint);
 }
 
-int				get_the_right_setup(t_env *env)
+void			get_the_right_setup(t_env *env)
 {
 	env->mouse = g_frac[env->fractal].mouse;
 	env->name = ft_strdup(g_frac[env->fractal].name);
@@ -71,24 +71,20 @@ int				get_the_right_setup(t_env *env)
 	env->uni_color = WHITE;
 	env->help = 0;
 	if (((env->paint = init_paint_tab()) == NULL))
-		return (-1);
+		ft_error(3, NULL);
 	env->red = ((unsigned char *)&env->uni_color)[0];
 	env->green = ((unsigned char *)&env->uni_color)[1];
 	env->blue = ((unsigned char *)&env->uni_color)[2];
 	if (!(env->start_thr = malloc(sizeof(int) * NB_THREAD)))
-		return (-1);
-	return (0);
+		ft_error(3, NULL);
 }
 
 int				main(int ac, char **av)
 {
 	t_env env;
 
-	if (get_params(&env, ac, av) == -1)
-		return (-1);
-	if (get_the_right_setup(&env) == -1)
-		return (-1);
-	if (run_fractal(&env) == -1)
-		return (-1);
+	get_params(&env, ac, av);
+	get_the_right_setup(&env);
+	run_fractal(&env);
 	return (0);
 }

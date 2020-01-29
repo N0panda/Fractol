@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:46:33 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:43:44 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:25:28 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,33 @@ int			ft_creat_image(t_mlx *mlx)
 	endian = 0;
 	size_line = 4 * W_IMAGE;
 	size_menu = 4 * W_MENU;
-	mlx->img_ptr = mlx_new_image(mlx->ptr, W_IMAGE, H_IMAGE);
-	mlx->img_str = mlx_get_data_addr(mlx->img_ptr, &bpp,
-		&size_line, &endian);
-	mlx->menu_ptr = mlx_new_image(mlx->ptr, W_MENU, H_MENU);
-	mlx->menu_str = mlx_get_data_addr(mlx->menu_ptr, &bpp, &size_menu, &endian);
+	if (!(mlx->img_ptr = mlx_new_image(mlx->ptr, W_IMAGE, H_IMAGE)))
+		return (-1);
+	if (!(mlx->img_str = mlx_get_data_addr(mlx->img_ptr, &bpp,
+		&size_line, &endian)))
+		return (-1);
+	if (!(mlx->menu_ptr = mlx_new_image(mlx->ptr, W_MENU, H_MENU)))
+		return (-1);
+	if (!(mlx->menu_str = mlx_get_data_addr(mlx->menu_ptr,
+		&bpp, &size_menu, &endian)))
+		return (-1);
 	return (0);
 }
 
 void		put_menu(t_env *env)
 {
-	menu_fractal_name(env);
-	menu_max_iter(env);
-	menu_zoom(env);
+	if ((menu_fractal_name(env)) == -1)
+		menu_err();
+	if ((menu_max_iter(env)) == -1)
+		menu_err();
+	if ((menu_zoom(env)) == -1)
+		menu_err();
 	menu_negative_smooth(env);
 	if (env->color_set == 0)
-		menu_uni_color(env);
+	{
+		if ((menu_uni_color(env)) == -1)
+			menu_err();
+	}
 	if (env->mouse == 2)
 		menu_captured(env);
 	menu_processor(env);

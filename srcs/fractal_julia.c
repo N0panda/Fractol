@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 17:25:32 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:21:17 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:26:37 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void			f_julia(t_env *env, double x, double y)
 	double		tab[4];
 
 	i = 0;
-	//0 = c reel
-	//1 = c imm
-	//2 = z reel
-	//3 = z imm
 	tab[0] = env->c_r;
 	tab[1] = env->c_i;
 	tab[2] = x / env->zoom + env->x_min;

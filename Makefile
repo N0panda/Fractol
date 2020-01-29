@@ -6,7 +6,7 @@
 #    By: ythomas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 16:40:09 by ythomas           #+#    #+#              #
-#    Updated: 2020/01/26 17:55:46 by ythomas          ###   ########.fr        #
+#    Updated: 2020/01/29 13:32:17 by ythomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,26 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 FLAGS_LIBX = -lmlx -framework OpenGL -framework AppKit
 
-SRCS = main \
-	   error \
-	   get_params \
-	   run_fractal \
-	   get_key_mouse \
-	   manage_image \
-	   fractal_mandelbrot \
-	   fractal_julia \
-	   fractal_burningship \
-	   fractal_feigenbaum \
-	   fractal_leaf \
-	   events \
-	   events2 \
-	   mouse_event \
-	   tools \
-	   color \
-	   menu	\
-	   menu2 \
-	   help_menu \
-	   thread \
+SRCS = main.c \
+	   error.c \
+	   get_params.c \
+	   run_fractal.c \
+	   get_key_mouse.c \
+	   manage_image.c \
+	   fractal_mandelbrot.c \
+	   fractal_julia.c \
+	   fractal_burningship.c \
+	   fractal_feigenbaum.c \
+	   fractal_leaf.c \
+	   events.c \
+	   events2.c \
+	   mouse_event.c \
+	   tools.c \
+	   color.c \
+	   menu.c	\
+	   menu2.c \
+	   help_menu.c \
+	   thread.c \
 
 SRC_PATH = ./srcs/
 
@@ -45,28 +45,28 @@ HEAD_DIR = ./includes
 OBJ_DIR = ./obj/
 OBJ_NAME = obj
 HEAD_PATH = $(HEAD_DIR)/$(HEAD)
-OBJ	= $(patsubst %,$(OBJ_DIR)%.o,$(SRCS))
+OBJ	= $(SRCS:%c=$(OBJ_DIR)%o)
 
 LIB = $(LIB_DIR)/libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJ) $(MKDIR)
+$(NAME): $(LIB) $(OBJ_DIR) $(SRC) $(OBJ)
 	$(CC)$(FLAGS) -o $(NAME) $(OBJ) $(LIB) $(FLAGS_LIBX) -I$(HEAD_PATH)
 
 $(LIB): FORCE
 	make -C $(LIB_DIR)
 
-MKDIR: $(shell mkdir obj)
-
 FORCE:
 
-$(OBJ_DIR)%.o: $(SRC_PATH)%.c $(HEAD_PATH)
+$(OBJ_DIR)%.o: $(SRC_PATH)%.c
 	$(CC) $(FLAGS) -c $< -o $@ -I$(HEAD_DIR)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	rm -rf $(OBJ_DIR)
-	make -C $(LIB_DIR) clean
 
 fclean: clean
 	rm -rf $(NAME)

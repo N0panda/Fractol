@@ -6,13 +6,13 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:09:44 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:59:20 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:46:38 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static const init_func g_init[] =
+static const t_init_func g_init[] =
 {
 	init_mandelbrot,
 	init_julia,

@@ -6,7 +6,7 @@
 /*   By: ythomas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 15:05:08 by ythomas           #+#    #+#             */
-/*   Updated: 2020/01/26 17:47:59 by ythomas          ###   ########.fr       */
+/*   Updated: 2020/01/27 17:44:59 by ythomas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			push_help(t_env *env)
 {
-	ft_bzero(env->mlx->img_str, PIX_IMAGE * 4);
+	ft_bzero(env->mlx->img_str, W_IMAGE * H_IMAGE * 4);
 	mlx_put_image_to_window(env->mlx->ptr, env->mlx->window,
 		env->mlx->img_ptr, 0, 0);
 	mlx_put_image_to_window(env->mlx->ptr, env->mlx->window,
