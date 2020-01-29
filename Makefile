@@ -6,7 +6,7 @@
 #    By: ythomas <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 16:40:09 by ythomas           #+#    #+#              #
-#    Updated: 2020/01/29 13:32:17 by ythomas          ###   ########.fr        #
+#    Updated: 2020/01/29 13:40:26 by ythomas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ OBJ_NAME = obj
 HEAD_PATH = $(HEAD_DIR)/$(HEAD)
 OBJ	= $(SRCS:%c=$(OBJ_DIR)%o)
 
+HEADERS = $(shell find $(HEAD_PATH) -type f -name "\.h")
+
 LIB = $(LIB_DIR)/libftprintf.a
 
 all: $(NAME)
@@ -59,7 +61,7 @@ $(LIB): FORCE
 
 FORCE:
 
-$(OBJ_DIR)%.o: $(SRC_PATH)%.c
+$(OBJ_DIR)%.o: $(SRC_PATH)%.c $(HEADERS)
 	$(CC) $(FLAGS) -c $< -o $@ -I$(HEAD_DIR)
 
 $(OBJ_DIR):
